@@ -4,292 +4,245 @@
 <meta charset="UTF-8">
 <title>Farewell Yllaena</title>
 
+<link href="https://fonts.cdnfonts.com/css/minecraftia" rel="stylesheet">
+
 <style>
 body {
   margin: 0;
-  font-family: Arial, sans-serif;
+  font-family: 'Minecraftia', monospace;
   background: linear-gradient(#2b0000, #4b0000);
-  color: white;
   text-align: center;
   overflow-x: hidden;
 }
 
-/* INTRO SCREEN */
+/* 💗 GLOBAL TEXT */
+body, header, #notif, .front, .back, .main-title {
+  color: #ff8fb1;
+  text-shadow:
+    -1px -1px 0 #000,
+     1px -1px 0 #000,
+    -1px  1px 0 #000,
+     1px  1px 0 #000;
+}
+
+/* 🎀 TITLE */
+.main-title {
+  font-size: 30px;
+  margin-top: 20px;
+}
+
+/* 🎬 INTRO */
 #intro {
   position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: #2b0000;
+  inset: 0;
+  background: #1a0000;
   display: flex;
-  justify-content: center;
   align-items: center;
-  font-size: 32px;
+  justify-content: center;
+  font-size: 22px;
   z-index: 9999;
-  opacity: 1;
-  transition: opacity 2s ease;
+  animation: fadeOut 2s ease 5s forwards;
 }
 
-/* HEADER */
+@keyframes fadeOut {
+  to { opacity: 0; visibility: hidden; }
+}
+
 header {
-  background-color: #8b0000;
-  padding: 20px;
-  font-size: 26px;
-  font-weight: bold;
-}
-
-/* MUSIC BUTTON */
-.music-btn {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
   background: #8b0000;
-  border: none;
-  color: white;
-  padding: 10px 15px;
-  border-radius: 10px;
-  cursor: pointer;
-  z-index: 1000;
+  padding: 20px;
+  font-size: 24px;
 }
 
-/* PETALS */
+#notif {
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(0,0,0,0.8);
+  padding: 10px;
+  border-radius: 10px;
+  display: none;
+}
+
+/* 💌 LETTERS */
+.letters { padding: 20px; }
+
+.letter {
+  width: 280px;
+  margin: 15px auto;
+  perspective: 1000px;
+  cursor: pointer;
+}
+
+.big-letter {
+  width: 320px;
+}
+
+.letter-inner {
+  position: relative;
+  transform-style: preserve-3d;
+  transition: transform 0.9s;
+}
+
+.front, .back {
+  position: absolute;
+  width: 100%;
+  height: 180px;
+  border-radius: 12px;
+  backface-visibility: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 15px;
+}
+
+.big-letter .back {
+  height: 260px;
+  font-size: 11px;
+}
+
+.front {
+  background: rgba(255,255,255,0.9);
+  color: #2b0000;
+}
+
+.back {
+  background: white;
+  color: #2b0000;
+  transform: rotateY(180deg);
+}
+
+.letter.open .letter-inner {
+  transform: rotateY(180deg);
+  box-shadow: 0 0 20px rgba(255,192,203,0.5);
+}
+
+/* 🌸 PETALS */
 .petal {
   position: fixed;
-  top: -10px;
-  width: 12px;
-  height: 12px;
-  background: radial-gradient(circle, #ffc0cb 40%, #ff9eb5 100%);
+  width: 10px;
+  height: 10px;
+  background: pink;
   border-radius: 50% 50% 50% 0;
-  transform: rotate(45deg);
-  pointer-events: none;
-  opacity: 0.8;
+  opacity: 0.7;
 }
 
 @keyframes fall {
-  0% { transform: translateY(-10vh) translateX(0) rotate(0deg); }
-  100% { transform: translateY(110vh) translateX(var(--drift)) rotate(360deg); }
-}
-
-/* UPLOAD */
-.upload-container {
-  margin: 20px;
-  padding: 20px;
-  border: 2px dashed white;
-  border-radius: 10px;
-  display: inline-block;
-  cursor: pointer;
-}
-
-/* GALLERY */
-.gallery {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 15px;
-  padding: 20px;
-}
-
-.image-card {
-  background: white;
-  border-radius: 10px;
-  overflow: hidden;
-  position: relative;
-}
-
-.image-card img {
-  width: 100%;
-  height: 200px;
-  object-fit: cover;
-}
-
-.image-card button {
-  position: absolute;
-  top: 5px;
-  right: 5px;
-  background: #8b0000;
-  color: white;
-  border: none;
-  padding: 5px;
-  cursor: pointer;
-}
-
-/* LETTERS */
-.letters {
-  padding: 20px;
-}
-
-.letter {
-  background: white;
-  color: #2b0000;
-  margin: 15px auto;
-  padding: 15px;
-  border-radius: 10px;
-  width: 90%;
-  max-width: 320px;
-  cursor: pointer;
-  text-align: center;
-}
-
-.message {
-  display: none;
-  margin-top: 10px;
+  0% { transform: translateY(-10vh); }
+  100% { transform: translateY(110vh); }
 }
 </style>
 </head>
 
 <body>
 
-<!-- INTRO -->
-<div id="intro">For Yllaena… 💔🌸</div>
+<div id="intro">For Yllaena… 🌸</div>
 
-<header>Farewell Yllaena 💔🌸</header>
+<h1 class="main-title">For Yllaena Reis Bustilla Ednave 💗</h1>
+<header>Farewell Yllaena 🌸</header>
 
-<!-- MUSIC -->
-<iframe id="musicFrame" width="0" height="0"
-src="https://www.youtube.com/embed/XPpTgCho5ZA?enablejsapi=1&loop=1&playlist=XPpTgCho5ZA"
-allow="autoplay">
-</iframe>
+<!-- 🎵 MUSIC -->
+<audio id="music" loop>
+  <source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_c8b1a4b6f7.mp3?filename=sad-piano-ambient-110997.mp3">
+</audio>
 
-<button class="music-btn" onclick="toggleMusic()">🔊 Music</button>
+<audio id="notifSound">
+  <source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_4c3fef2c1a.mp3?filename=notification-112.wav">
+</audio>
 
-<!-- UPLOAD -->
-<label class="upload-container">
-  Upload Memories 📸
-  <input type="file" id="imageInput" multiple accept="image/*">
-</label>
-
-<div class="gallery" id="gallery"></div>
+<audio id="openSound">
+  <source src="https://cdn.pixabay.com/download/audio/2022/02/23/audio_9c0d91a9f2.mp3?filename=paper-flip-102349.mp3">
+</audio>
 
 <div class="letters" id="letters"></div>
 
 <script>
-/* INTRO FADE */
-setTimeout(() => {
-  document.getElementById("intro").style.opacity = "0";
-  setTimeout(() => {
-    document.getElementById("intro").style.display = "none";
-  }, 2000);
-}, 2000);
+let started = false;
 
-/* MUSIC CONTROL */
-let playing = false;
-function toggleMusic() {
-  const iframe = document.getElementById("musicFrame");
-  if (!playing) {
-    iframe.src += "&autoplay=1";
-    playing = true;
-  } else {
-    iframe.src = iframe.src.replace("&autoplay=1", "");
-    playing = false;
-  }
+document.body.addEventListener("click", () => {
+  if (started) return;
+  started = true;
+  const m = document.getElementById("music");
+  m.volume = 0;
+  m.play();
+
+  let v = 0;
+  const fade = setInterval(() => {
+    if (v < 1) {
+      v += 0.03;
+      m.volume = v;
+    } else clearInterval(fade);
+  }, 120);
+}, { once: true });
+
+function openSound() {
+  document.getElementById("openSound").play();
 }
 
-/* LETTERS */
-const lettersData = [
-"Farewell Yllaena, I hope Singapore brings you peace. We will miss you.",
-"Yuna, Raven, Marlin, Camille, Lorraine, and Fatima will miss you.",
+/* 💌 LETTERS */
+const data = [
+"Farewell Yllaena, I hope Singapore brings you peace.",
+"Goodluck sa Singapore, Yllaena. Kaya mo yan.",
+"Kahit malayo ka na, you’ll always be remembered here.",
 "10 Mabini will miss you.",
-"And I, Adam, will miss you so much. I promise I’ll do my best and see you in Singapore.",
-"Distance won’t change anything.",
-"This isn't goodbye forever—just a new chapter."
+"And I will miss you the most… see you again ",
+"Kahit nasa Singapore ka na, nandito lang kami.",
+"Take care palagi, huwag mo kami kalimutan.",
+"This isn't goodbye forever."
 ];
 
-const lettersContainer = document.getElementById("letters");
+const container = document.getElementById("letters");
 
-lettersData.forEach(text => {
-  const letter = document.createElement("div");
-  letter.className = "letter";
-  letter.innerHTML = "Click 💌<div class='message'></div>";
+data.forEach(t => {
+  const l = document.createElement("div");
+  l.className = "letter";
 
-  const msg = letter.querySelector(".message");
+  l.innerHTML = `
+    <div class="letter-inner">
+      <div class="front">💌 OPEN</div>
+      <div class="back">${t}</div>
+    </div>
+  `;
 
-  letter.onclick = () => {
-    msg.style.display = msg.style.display === "block" ? "none" : "block";
-    typeText(msg, text);
+  l.onclick = () => {
+    l.classList.toggle("open");
+    openSound();
   };
 
-  lettersContainer.appendChild(letter);
+  container.appendChild(l);
 });
 
-/* TYPING */
-function typeText(el, text) {
-  el.innerHTML = "";
-  let i = 0;
-  const interval = setInterval(() => {
-    el.innerHTML += text[i];
-    i++;
-    if (i >= text.length) clearInterval(interval);
-  }, 30);
-}
+/*  BIG FINAL LETTER */
+const big = document.createElement("div");
+big.className = "letter big-letter";
 
-/* IMAGE UPLOAD */
-const imageInput = document.getElementById("imageInput");
-const gallery = document.getElementById("gallery");
+big.innerHTML = `
+<div class="letter-inner">
+  <div class="front"> ONE LAST LETTER</div>
+  <div class="back">
+  yllaena i know you're scared about what the future has satin, but i pinky promise you, i will always be there for you, tho baka we wont be able to talk everyday by then since your parents, i will still love u always, if ever we end, i hope we find eachother again when the time is right!! i pinky promise u i am only proudly devoted to you yllaena, only you.
+  </div>
+</div>
+`;
 
-imageInput.addEventListener("change", function() {
-  for (let file of this.files) {
-    if (!file.type.startsWith("image/")) continue;
+big.onclick = () => {
+  big.classList.toggle("open");
+  openSound();
+};
 
-    const reader = new FileReader();
-    reader.onload = e => {
-      const div = document.createElement("div");
-      div.className = "image-card";
-      div.innerHTML = `
-        <img src="${e.target.result}">
-        <button onclick="this.parentElement.remove()">X</button>
-      `;
-      gallery.appendChild(div);
-    };
-    reader.readAsDataURL(file);
-  }
-});
+container.appendChild(big);
 
-/* PETALS */
-let petals = [];
-let mouseX = window.innerWidth / 2;
-
-document.addEventListener("mousemove", e => mouseX = e.clientX);
-
-function createPetal() {
+/* 🌸 PETALS */
+function petals() {
   const p = document.createElement("div");
   p.className = "petal";
-
-  const x = Math.random() * window.innerWidth;
-  const drift = (Math.random() - 0.5) * 200;
-
-  p.style.left = x + "px";
-  p.style.setProperty("--drift", drift + "px");
-
-  const duration = 6 + Math.random() * 6;
-  p.style.animation = `fall ${duration}s linear forwards`;
-
+  p.style.left = Math.random()*window.innerWidth + "px";
+  p.style.animation = `fall ${5+Math.random()*5}s linear`;
   document.body.appendChild(p);
-
-  petals.push(p);
-
-  setTimeout(() => {
-    p.remove();
-    petals = petals.filter(el => el !== p);
-  }, duration * 1000);
+  setTimeout(() => p.remove(), 9000);
 }
-
-function updatePetals() {
-  petals.forEach(p => {
-    const rect = p.getBoundingClientRect();
-    const wind = Math.sin(Date.now()/1000) * 0.5;
-    const influence = (mouseX - rect.left) * 0.0005;
-
-    p.style.transform = `
-      translateX(${wind * 20 + influence * 50}px)
-      rotate(${rect.top}deg)
-    `;
-  });
-
-  requestAnimationFrame(updatePetals);
-}
-
-setInterval(createPetal, 200);
-updatePetals();
+setInterval(petals, 300);
 </script>
 
 </body>
